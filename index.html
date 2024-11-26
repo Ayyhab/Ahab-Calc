@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Javascript calculator">
+  <title>Ahab's Calculator</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin-top: 50px;
+    }
+    .calculator {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    #display {
+      height: 100px;
+      font-size: 2rem;
+      text-align: center;
+      background-color: #1f80c9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .btn {
+      height: 80px;
+      font-size: 1.5rem;
+      border-radius: 5px;
+    }
+    .btn-primary {
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    .btn-warning {
+      background-color: #fc8400;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+    }
+    .btn-success {
+      background-color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="calculator">
+    <h2 class="text-center mb-4">Ahab's Calculator</h2>
+
+    <form id="myform" name="calc">
+      <input id="display" name="display" class="form-control mb-3" readonly>
+
+      <div class="row g-2">
+        <div class="col-3">
+          <input type="button" value="1" class="btn btn-primary w-100" onclick="calc.display.value+= '1'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="2" class="btn btn-primary w-100" onclick="calc.display.value+= '2'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="3" class="btn btn-primary w-100" onclick="calc.display.value+= '3'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="+" class="btn btn-warning w-100" onclick="calc.display.value+= '+'">
+        </div>
+      </div>
+
+      <div class="row g-2 mt-2">
+        <div class="col-3">
+          <input type="button" value="4" class="btn btn-primary w-100" onclick="calc.display.value+= '4'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="5" class="btn btn-primary w-100" onclick="calc.display.value+= '5'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="6" class="btn btn-primary w-100" onclick="calc.display.value+= '6'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="-" class="btn btn-warning w-100" onclick="calc.display.value+= '-'">
+        </div>
+      </div>
+
+      <div class="row g-2 mt-2">
+        <div class="col-3">
+          <input type="button" value="7" class="btn btn-primary w-100" onclick="calc.display.value+= '7'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="8" class="btn btn-primary w-100" onclick="calc.display.value+= '8'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="9" class="btn btn-primary w-100" onclick="calc.display.value+= '9'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="x" class="btn btn-warning w-100" onclick="calc.display.value+= '*'">
+        </div>
+      </div>
+
+      <div class="row g-2 mt-2">
+        <div class="col-3">
+          <input type="button" value="C" class="btn btn-danger w-100" onclick="calc.display.value = ''">
+        </div>
+        <div class="col-3">
+          <input type="button" value="0" class="btn btn-primary w-100" onclick="calc.display.value+= '0'">
+        </div>
+        <div class="col-3">
+          <input type="button" value="=" class="btn btn-success w-100" onclick="calc.display.value = eval(calc.display.value)">
+        </div>
+        <div class="col-3">
+          <input type="button" value="/" class="btn btn-warning w-100" onclick="calc.display.value+= '/'">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Event listener for keyboard input
+  document.getElementById("display").addEventListener("keyup", function(event) {
+    if (event.key === "Backspace") {
+      // Allow Backspace to clear the input
+      calc.display.value = calc.display.value.slice(0, -1);
+    }
+  });
+
+  // Event listener for keydown to allow only numbers and operators
+  window.addEventListener("keydown", function(event) {
+    const validKeys = /[0-9+\-*/=]/;
+    if (!validKeys.test(event.key) && event.key !== "Backspace") {
+      event.preventDefault();  // Prevent invalid key presses
+    }
+  });
+</script>
+
+</body>
+</html>
